@@ -15,5 +15,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>jingdong-shop-basic-eureka-server</module>
+        <module>jingdong-shop-basic-zuul-server</module>
     </modules>
 </project>
