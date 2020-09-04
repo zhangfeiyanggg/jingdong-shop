@@ -2,6 +2,7 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/jingdong-shop-basics/jingdong-shop-basic-eureka-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jingdong-shop-basics/jingdong-shop-basic-upload-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jingdong-shop-basics/jingdong-shop-basic-zuul-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jingdong-shop-commoms/jingdong-shop-common-core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jingdong-shop-service-api/jingdong-shop-service-api-xxx/src/main/java" charset="UTF-8" />

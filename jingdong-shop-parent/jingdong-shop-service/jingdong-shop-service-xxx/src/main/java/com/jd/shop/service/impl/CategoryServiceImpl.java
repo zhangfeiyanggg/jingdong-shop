@@ -1,16 +1,19 @@
 package com.jd.shop.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.jd.shop.entity.SpecGroupEntity;
 import com.jd.shop.mapper.CategoryMapper;
 import com.jd.shop.base.BaseApiService;
 import com.jd.shop.base.Result;
 import com.jd.shop.entity.CategoryEntity;
+import com.jd.shop.mapper.SpecGroupMapper;
 import com.jd.shop.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RestController;
 import tk.mybatis.mapper.entity.Example;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -25,6 +28,10 @@ public class CategoryServiceImpl extends BaseApiService implements CategoryServi
 
     @Autowired
     private CategoryMapper categoryMapper;
+
+
+    @Resource
+    private SpecGroupMapper specGroupMapper;
 
 
     @Override
@@ -93,9 +100,23 @@ public class CategoryServiceImpl extends BaseApiService implements CategoryServi
             categoryMapper.updateByPrimaryKeySelective(parentEntity);
         }
 
+
+        Example example1 = new Example(SpecGroupEntity.class);
+        example1.createCriteria().andEqualTo("cid",categoryEntity.getId());
+        List<SpecGroupEntity> list1 = specGroupMapper.selectByExample(example1);
+        if(list1.size()>0){
+            return this.setResultError("该分类被规格组绑定不能被删除");
+        }
+
         categoryMapper.deleteByPrimaryKey(id);
 
         return this.setResultSuccess();
+    }
+
+    @Override
+    public Result<List<CategoryEntity>> getByBrand(Integer brandId) {
+        List<CategoryEntity> list = categoryMapper.getByBrandId(brandId);
+        return this.setResultSuccess(list);
     }
 
 
